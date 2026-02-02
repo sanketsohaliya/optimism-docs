@@ -1,7 +1,7 @@
 services:
   # Sequencer (op-geth + op-node)
   op-node:
-    image: us-docker.pkg.dev/oplabs-tools-artifacts/images/op-node:v1.13.5
+    image: us-docker.pkg.dev/oplabs-tools-artifacts/images/op-node:v1.16.5
     container_name: op-node
     volumes:
       - ./sequencer:/workspace
@@ -23,7 +23,7 @@ services:
       --sequencer.stopped=false
       --sequencer.max-safe-lag=3600
       --verifier.l1-confs=4
-      --p2p.disable  # For local devnet only. Remove this flag for production deployments.
+      --p2p.disable
       --rpc.addr=0.0.0.0
       --rpc.port=8547
       --rpc.enable-admin
@@ -39,7 +39,7 @@ services:
       start_period: 10s
 
   op-geth:
-    image: us-docker.pkg.dev/oplabs-tools-artifacts/images/op-geth:v1.101511.1
+    image: us-docker.pkg.dev/oplabs-tools-artifacts/images/op-geth:v1.101605.0
     container_name: op-geth
     volumes:
       - ./sequencer:/workspace
